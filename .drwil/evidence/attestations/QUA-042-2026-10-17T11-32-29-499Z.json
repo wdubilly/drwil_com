@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "contract": "QUA-042",
+  "status": "ATTESTED",
+  "attestedAt": "2026-10-17T11:32:29.499Z",
+  "actor": {
+    "name": "Wilfried Dubilly",
+    "source": "git config user.name, declarative"
+  },
+  "note": null,
+  "fingerprint": "1a0b34e4603248bd86369ceb49b51a5e2abadad124208112a279d83e572e4c82",
+  "proof": {},
+  "commit": "31ba65ece1c54926a23f163f6a93eaba8aea2480",
+  "automated": []
+}
