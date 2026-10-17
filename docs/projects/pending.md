@@ -32,6 +32,9 @@ otherwise.
 
 ### Kit
 
+- [ ] [decision] Acceptance criteria turned into durable controls —
+  `docs/intentions/acceptance-criteria-durable-memory.md`.
+
 - [ ] [decision] Declare the stack in the kit configuration —
   `docs/intentions/declare-the-stack.md`.
 

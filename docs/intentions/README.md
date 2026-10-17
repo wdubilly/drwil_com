@@ -22,6 +22,7 @@ removes it when fully covered.
 |---|---|
 | `docs/intentions/order-line-quantity-zero.md` | Order line with a quantity of 0: rejected or worth 0 € |
 | `docs/intentions/declare-the-stack.md` | Declare the stack in `.drwil/ia-first.json` |
+| `docs/intentions/acceptance-criteria-durable-memory.md` | Acceptance criteria turned into durable, traceable controls |
 
 ## Brief template
 
