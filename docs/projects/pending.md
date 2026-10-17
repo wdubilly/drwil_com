@@ -27,8 +27,13 @@ otherwise.
 
 ### Orders
 
-- [ ] [AI] Order total with a 10 % discount from 100 € —
-  `docs/projects/order-total-discount.md`.
+- [ ] [decision] Order line with a quantity of 0 —
+  `docs/intentions/order-line-quantity-zero.md`.
+
+### Kit
+
+- [ ] [decision] Declare the stack in the kit configuration —
+  `docs/intentions/declare-the-stack.md`.
 
 <!-- Example:
 - [ ] [AI] short title of the topic, link to a brief if more than two lines
