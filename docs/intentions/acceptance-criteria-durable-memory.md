@@ -51,7 +51,7 @@ workstream, `APP-001`):
   passed) turns « not run » into a failure on push and in CI;
   `.githooks/check-control-coverage.mjs` checks that a degradable check has
   a CI job triggered on its paths. Branch protection is not set up on
-  `wdubilly/drwil_com`: PR #1 was merged before any required check.
+  `wdubilly/drwil_com`: PR #1 was merged at once, no check being required (its CI happened to be green already).
 - **Non-automatable criteria**: `[human]` marker → `Manual` contract →
   `drwil attest <ID>`, interactive terminal only, bound by fingerprint to the
   contract's text and proof definition (`node_modules/drwil/dist/attest.js` (if present)).
