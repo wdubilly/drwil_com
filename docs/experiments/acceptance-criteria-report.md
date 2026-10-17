@@ -40,12 +40,12 @@ for S2, that the refusal comes from `APP-001` only.
 
 | Criterion | Machine-checked | Declarative / human | Status |
 |---|---|---|---|
-| 1. A criterion is identified and linked to a task | a criterion line must end with a registered contract ID (`check-docs`); start and closing refused without criteria | the criterion has no ID of its own: text + contract | met, with a limit (gap 1) |
+| 1. A criterion is identified and linked to a task | a criterion line must end with a registered contract ID (`check-docs`); start and closing refused without criteria | the criterion has no ID of its own: text + contract | **partially met**: each criterion of an active brief is linked to a registered contract and evaluated by `verify`. Limit: this evaluation reads the local governance state, so it does not run in CI and stops once the brief is deleted at closing (gap 1); afterwards only the contract stays durable |
 | 2. Human acceptance distinguished from the agent's proposal | only the start gesture (interactive terminal or poll read by a hook) and `drwil attest` (interactive terminal) | criteria validation is a line written by the agent in the brief's « Decisions »; attestation identity is `git config user.name`, declarative | **not met by the kit** (gap 2) |
 | 3. An automated proof is linked to the control actually run | contract → **Check** → declared command; `verify` reports each check's status; QUA-029 checks the cited tests carry the ID | — | met (S1) |
-| 4. Tests kept in the repo and run by CI | QUA-013: « not run » fails on push and in CI; `ci-coverage` re-reads the CI file | branch protection is a GitHub setting outside the kit | met: CI runs it, `main` requires it (S7); blocking a red PR not observed |
+| 4. Tests kept in the repo and run by CI | QUA-013: « not run » fails on push and in CI; `ci-coverage` re-reads the CI file | branch protection is a GitHub setting outside the kit | **partially met**: the tests are versioned, CI runs them and `main` requires the `checks` job (S7). Limit: only the configuration and a green PR were observed, not a red PR actually blocked; and the merge gate is a GitHub setting the kit neither sets up nor checks (gap 5) |
 | 5. A deliberate regression is detected | check fail, verdict FAIL, commit refused | — | met (S2) |
-| 6. Missing proofs and pending validations never shown as successes | not run ≠ pass; `manual` and exit code 1; obsolete attestation → `manual` | — | met (S3, S4, S5), with gap 4 |
+| 6. Missing proofs and pending validations never shown as successes | not run ≠ pass; `manual` and exit code 1; obsolete attestation → `manual` | — | **partially met**: S3, S4 and S5 show that a missing proof, or one made obsolete by a change to the contract, never yields a success. Limit: S6 shows that an attestation stays `ATTESTED` when the covered code changes without any change to the contract (gap 4). The kit therefore does not yet guarantee that a human attestation stays valid against the current state of the code |
 | 7. Reproducible demonstration | one command, throwaway copies, same check in CI | — | met, locally and in CI |
 
 ## Gaps found
