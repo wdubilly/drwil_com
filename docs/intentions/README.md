@@ -20,7 +20,8 @@ removes it when fully covered.
 
 | Brief | In one line |
 |---|---|
-*(empty at install — one line per brief created)*
+| `docs/intentions/order-line-quantity-zero.md` | Order line with a quantity of 0: rejected or worth 0 € |
+| `docs/intentions/declare-the-stack.md` | Declare the stack in `.drwil/ia-first.json` |
 
 ## Brief template
 

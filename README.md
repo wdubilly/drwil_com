@@ -1,6 +1,6 @@
 # drwil_com
 
-(to describe: what the application does, for whom)
+Computes the total of an order, with a 10 % discount from 100 € (`APP-001`, `docs/contracts.md`). Run the tests: `npm test`.
 
 > **Code assistants**: start with `AGENTS.md` (conduct, contracts, context
 > loading).
