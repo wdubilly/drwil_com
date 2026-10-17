@@ -1,6 +1,6 @@
 # Project: demonstrate acceptance criteria as durable controls
 
-**Status**: scoped on 2026-10-17 — increment 1 to start.
+**Status**: 2026-10-17 — increment 1 implemented, not committed; increment 2 [human] to do.
 **Risk**: HIGH
 **Maturity**: ready
 **Intent**: `docs/intentions/acceptance-criteria-durable-memory.md`
@@ -75,13 +75,13 @@ None.
 ## 6. Increments
 
 - **Increment 1 — demonstration script, contracts, report** [AI]:
-  `tests/acceptance-demo.test.mjs` (to create) (scenarios S1–S6, each
+  `tests/acceptance-demo.test.mjs` (scenarios S1–S6, each
   named `QUA-041: …`), declared as the `QUA-041` check in
   `.drwil/ia-first.json`; CI installs the dev dependencies (`npm ci`) so
   the tests can run `drwil verify`; QUA-041 completed in
   `docs/contracts.md` (its **Check** and **Tests** replace its **Manual**
   field); the demo tests in `docs/architecture.md`; report
-  `docs/experiments/acceptance-criteria-report.md` (to create), scenario by
+  `docs/experiments/acceptance-criteria-report.md`, scenario by
   scenario, with the kit's gaps. Exit criterion:
   `node .githooks/run-checks.mjs` green and `drwil verify --agent` with no
   FAIL nor ERROR.
@@ -94,6 +94,6 @@ None.
 
 ## 7. Hand-off
 
-- **Last state** (2026-10-17): scoped, the four scoping points validated by the requester.
-- **Uncommitted work**: this brief, its index line, QUA-041 and QUA-042 in `docs/contracts.md`.
-- **Next step**: [human] start the workstream (`/drwil-start`).
+- **Last state** (2026-10-17): increment 1 implemented — `tests/acceptance-demo.test.mjs` (S1–S6, 6/6 pass locally), `QUA-041` check declared and contract completed, `npm ci` added to CI, map updated, report `docs/experiments/acceptance-criteria-report.md` written (6 gaps). `drwil verify --agent`: 9 PASS, 3 ATTESTED, 0 FAIL, 1 MANUAL (QUA-042, by design).
+- **Uncommitted work**: all of increment 1.
+- **Next step**: [human] approve the commit and push; then enable branch protection on `main` (required status check `checks`) so S7 can be observed on the PR; QUA-042 attested only after reading the report.

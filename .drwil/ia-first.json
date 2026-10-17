@@ -34,6 +34,19 @@
         "package.json",
         ".drwil/ia-first.json"
       ]
+    },
+    {
+      "id": "QUA-041",
+      "name": "QUA-041 acceptance-criteria demonstration",
+      "run": "node --test --test-name-pattern \"QUA-041\" \"tests/*.test.mjs\"",
+      "paths": [
+        "src/**",
+        "tests/**",
+        "docs/contracts.md",
+        "package.json",
+        ".drwil/ia-first.json",
+        ".githooks/**"
+      ]
     }
   ],
   "scopeReminder": "blocking",

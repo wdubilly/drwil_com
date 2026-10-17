@@ -130,10 +130,11 @@ contracts » section).
 **Proof** : the tests named `QUA-041: …`, run on their own by the `QUA-041` check (hook + CI, `drwil verify`)
 **Reason** : a proof is only durable if breaking what it protects is actually seen
 **Origin** : acceptance-criteria-demo — « A deliberate regression causes a detectable failure »
-**Manual** : check to complete — increment 1 of `docs/projects/acceptance-criteria-demo.md` writes the tests, declares the check, cites it as **Check**, lists the tests as **Tests**, then removes this field.
+**Check** : `QUA-041`
+**Tests** : `tests/acceptance-demo.test.mjs`
 
 ## QUA-042 — The acceptance-criteria experiment report is judged by the requester
-**Rule** : the report `docs/experiments/acceptance-criteria-report.md` (to create) states, for each acceptance criterion, what the kit checks by machine and what stays declarative; the requester judges that it is accurate
+**Rule** : the report `docs/experiments/acceptance-criteria-report.md` states, for each acceptance criterion, what the kit checks by machine and what stays declarative; the requester judges that it is accurate
 **Scope** : the experiment report
 **Source of truth** : the report
 **Proof** : human attestation (`drwil attest QUA-042`)
