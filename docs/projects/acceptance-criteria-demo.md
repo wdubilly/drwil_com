@@ -1,6 +1,6 @@
 # Project: demonstrate acceptance criteria as durable controls
 
-**Status**: 2026-10-17 — increment 1 implemented, not committed; increment 2 [human] to do.
+**Status**: 2026-10-17 — increments 1 and 2 done; closing awaits the QUA-042 attestation.
 **Risk**: HIGH
 **Maturity**: ready
 **Intent**: `docs/intentions/acceptance-criteria-durable-memory.md`
@@ -94,6 +94,6 @@ None.
 
 ## 7. Hand-off
 
-- **Last state** (2026-10-17): increment 1 implemented — `tests/acceptance-demo.test.mjs` (S1–S6, 6/6 pass locally), `QUA-041` check declared and contract completed, `npm ci` added to CI, map updated, report `docs/experiments/acceptance-criteria-report.md` written (6 gaps). `drwil verify --agent`: 9 PASS, 3 ATTESTED, 0 FAIL, 1 MANUAL (QUA-042, by design).
-- **Uncommitted work**: all of increment 1.
-- **Next step**: [human] approve the commit and push; then enable branch protection on `main` (required status check `checks`) so S7 can be observed on the PR; QUA-042 attested only after reading the report.
+- **Last state** (2026-10-17): increment 1 committed (`e94800b`), CI green; increment 2 done — `main` protection requires `checks` (strict, admins included), draft PR #2 green, S7 recorded in the report. `drwil verify --agent`: 9 PASS, 3 ATTESTED, 1 MANUAL (QUA-042).
+- **Uncommitted work**: none once the report update is committed.
+- **Next step**: [human] read `docs/experiments/acceptance-criteria-report.md` and attest QUA-042 if accurate; then [AI] closing (intents for the gaps, journal, `tests/acceptance-demo.test.mjs` added to `docs/projects/delivered-code.md`, PR #2 out of draft, automatic merge).
