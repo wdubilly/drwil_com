@@ -2,7 +2,7 @@
 // is replayed in a throwaway copy of the working tree, never in the real repository.
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { after, test } from "node:test";
@@ -35,7 +35,10 @@ function git(cwd, ...args) {
 function makeCopy() {
   const dir = mkdtempSync(join(tmpdir(), "drwil-demo-"));
   copies.push(dir);
-  const files = git(ROOT, "ls-files", "-co", "--exclude-standard", "-z").split("\0").filter(Boolean);
+  // ls-files also lists tracked files deleted from disk but not staged: the copy follows the disk.
+  const files = git(ROOT, "ls-files", "-co", "--exclude-standard", "-z")
+    .split("\0")
+    .filter((f) => f && existsSync(join(ROOT, f)));
   for (const f of files) {
     mkdirSync(dirname(join(dir, f)), { recursive: true });
     cpSync(join(ROOT, f), join(dir, f));
