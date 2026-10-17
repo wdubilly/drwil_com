@@ -1,0 +1,48 @@
+{
+  "projectName": "drwil_com",
+  "projectShort": "drwil_com",
+  "lang": "en",
+  "layers": [],
+  "contractPrefixes": [
+    "SEC",
+    "QUA"
+  ],
+  "tools": [
+    "claude",
+    "codex",
+    "cursor",
+    "gemini",
+    "copilot"
+  ],
+  "ci": "none",
+  "dirs": {
+    "projects": "docs/projects",
+    "intentions": "docs/intentions",
+    "recipes": "docs/recipes",
+    "contracts": "docs/contracts.md",
+    "index": "docs/projects/pending.md"
+  },
+  "stack": [],
+  "checks": [],
+  "scopeReminder": "blocking",
+  "transitions": "human",
+  "scopeGate": "warning",
+  "newRequirements": "blocking",
+  "layerPrefixes": [
+    "app",
+    "tests",
+    "src",
+    "scripts"
+  ],
+  "codePrefixes": [
+    "scripts",
+    ".githooks",
+    "e2e"
+  ],
+  "extraCodeFiles": [],
+  "extraCodeGlobs": [
+    "docker-compose*.yml"
+  ],
+  "ciFiles": [],
+  "mode": "full"
+}
