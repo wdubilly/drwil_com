@@ -125,14 +125,14 @@ contracts » section).
 
 ## Business (APP)
 
-## APP-001 — Example business contract, to replace with your first one
-**Rule** : (example) An order with no line is refused. Replace it with the most critical business rule of your project.
-**Scope** : the code that applies this rule
-**Source of truth** : the module that implements it
-**Proof** : a test of this rule, named after its ID, declared as its own check (`.drwil/ia-first.json` → `checks`, with an `id`, filtering the tests by the ID: `npm test -- -t "APP-001"`), replayed by `drwil verify` at every workstream
-**Reason** : an acceptance criterion proven by a contract becomes the business non-regression: the next workstreams cannot break it without seeing it, and its own check names the broken rule
-**Manual** : check to complete — write the test, declare it in `checks` with an `id`, cite it here as **Check**, list its file as **Tests**, then remove this field (`docs/recipes/adopt-the-kit.md`, step 5).
-
+## APP-001 — Order total with a 10 % discount from 100 €
+**Rule** : the total of an order is the sum of its lines (unit price in integer cents × quantity), minus 10 % when that subtotal is greater than or equal to 100 €, rounded half-up to the cent; the discount applies once, on the raw subtotal; a malformed order or an invalid amount or quantity is rejected with a `TypeError` or `RangeError`
+**Scope** : `src/order-total.mjs`
+**Source of truth** : `src/order-total.mjs` (`orderTotal`)
+**Proof** : the tests named `APP-001: …`, run on their own by the `APP-001` check (hook + CI, `drwil verify`)
+**Reason** : first business rule of the project: a regression on a price is visible to every customer
+**Check** : `APP-001`
+**Tests** : `tests/order-total.test.mjs`
 
 ## Out of registry (these are not contracts)
 

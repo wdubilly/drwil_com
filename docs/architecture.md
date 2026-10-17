@@ -4,15 +4,18 @@ As of 2026-10-17. Map of the repository: what lives where. Keep it up to date in
 
 ## What the application does
 
-(to describe: what the application does, for whom)
+Computes the total of an order, with its discount rule (`APP-001`, `docs/contracts.md`). No API, screen or persistence yet.
 
 ## Stack
 
-Not decided. The user chooses it; an AI proposes one and waits for approval before writing application code.
+Node.js 24, ES modules, no runtime dependency. Tests: native runner `node --test` (`npm test`). CI: GitHub Actions (`.github/workflows/ia-first.yml`), running `.githooks/run-checks.mjs`.
 
 ## Layers
 
 No separate layer: the code lives at the repository root.
+
+- `src/`: business code (`src/order-total.mjs`: order total and discount).
+- `tests/`: tests of `src/`, named after the contract they prove (`APP-001: …`).
 
 ## AI-first governance
 

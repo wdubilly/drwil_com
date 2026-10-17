@@ -14,7 +14,7 @@
     "gemini",
     "copilot"
   ],
-  "ci": "none",
+  "ci": "github",
   "dirs": {
     "projects": "docs/projects",
     "intentions": "docs/intentions",
@@ -23,7 +23,19 @@
     "index": "docs/projects/pending.md"
   },
   "stack": [],
-  "checks": [],
+  "checks": [
+    {
+      "id": "APP-001",
+      "name": "APP-001 order total tests",
+      "run": "node --test --test-name-pattern \"APP-001\" \"tests/*.test.mjs\"",
+      "paths": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        ".drwil/ia-first.json"
+      ]
+    }
+  ],
   "scopeReminder": "blocking",
   "transitions": "human",
   "scopeGate": "warning",
@@ -43,6 +55,8 @@
   "extraCodeGlobs": [
     "docker-compose*.yml"
   ],
-  "ciFiles": [],
+  "ciFiles": [
+    ".github/workflows/ia-first.yml"
+  ],
   "mode": "full"
 }

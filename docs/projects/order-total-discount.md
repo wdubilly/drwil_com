@@ -1,6 +1,6 @@
 # Project: order total with a 10 % discount from 100 €
 
-**Status**: scoped on 2026-10-17 — increment 1 to start.
+**Status**: 2026-10-17 — increment 1 implemented, not committed; awaiting human attestations (SEC-006, QUA-015, QUA-019) and the remote repository.
 **Risk**: HIGH
 **Maturity**: ready
 
@@ -68,6 +68,6 @@ and CI).
 
 ## 7. Hand-off
 
-- **Last state** (2026-10-17): scoped, criteria validated by the requester.
-- **Uncommitted work**: the whole kit installation and this brief (repository has no commit yet).
-- **Next step**: [human] start the workstream (`/drwil-start`).
+- **Last state** (2026-10-17): increment 1 implemented — `src/order-total.mjs`, `tests/order-total.test.mjs` (7 tests `APP-001: …`), `APP-001` check and GitHub CI declared in `.drwil/ia-first.json`, `.github/` workflow and PR template, `APP-001` rewritten in `docs/contracts.md`, map `docs/architecture.md` filled in. `node .githooks/run-checks.mjs` green (brief scope "not run" locally: no `main` branch nor remote; green with `DRWIL_BASE=ed38936`). `drwil verify --agent`: 8 PASS, 0 FAIL, 3 MANUAL.
+- **Uncommitted work**: all of increment 1 (files above and this brief).
+- **Next step**: [human] approve the commit; attest SEC-006, QUA-015, QUA-019 (`drwil attest <ID>` in your own terminal); create the GitHub repository and the `main` branch so CI and the merge can run.
