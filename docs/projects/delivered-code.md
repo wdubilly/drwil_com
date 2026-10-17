@@ -8,6 +8,7 @@ files:
   - src/order-total.mjs
   - tests/order-total.test.mjs
   - .github/workflows/ia-first.yml
+  - tests/acceptance-demo.test.mjs
 -->
 
 ## 1. Need
@@ -23,6 +24,8 @@ own scope block.
 - `src/order-total.mjs`, `tests/order-total.test.mjs`,
   `.github/workflows/ia-first.yml`: order total with a 10 % discount
   (`APP-001`), journal entry of 2026-10-17.
+- `tests/acceptance-demo.test.mjs`: acceptance-criteria demonstration
+  (QUA-041), journal entry of 2026-10-17.
 
 ## 3. Decisions
 
@@ -39,6 +42,7 @@ SEC-006 (no runtime dependency).
 ## 5. Hand-off
 
 - **Last state** (2026-10-17): created at the closing of the order-total
-  workstream.
+  workstream; demonstration tests added at the closing of the
+  acceptance-criteria demonstration.
 - **Uncommitted work**: none once the closing commit is made.
 - **Next step**: none — updated at each closing that delivers code.

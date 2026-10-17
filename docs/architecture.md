@@ -15,7 +15,7 @@ Node.js 24, ES modules, no runtime dependency. Tests: native runner `node --test
 No separate layer: the code lives at the repository root.
 
 - `src/`: business code (`src/order-total.mjs`: order total and discount).
-- `tests/`: tests of `src/`, named after the contract they prove (`APP-001: …`).
+- `tests/`: tests named after the contract they prove — `tests/order-total.test.mjs` (`APP-001: …`) tests `src/`; `tests/acceptance-demo.test.mjs` (`QUA-041: …`) replays, in throwaway copies of the working tree, the scenarios showing that a regression or a missing proof is detected.
 
 ## AI-first governance
 

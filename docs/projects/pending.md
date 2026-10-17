@@ -32,6 +32,19 @@ otherwise.
 
 ### Kit
 
+- [ ] [decision] Acceptance criteria re-evaluated in CI and after closing —
+  `docs/intentions/criteria-reevaluated-in-ci.md`.
+- [ ] [decision] Human acceptance recorded per acceptance criterion —
+  `docs/intentions/per-criterion-human-acceptance.md`.
+- [ ] [decision] Execution results kept in the repository —
+  `docs/intentions/versioned-run-results.md`.
+- [ ] [decision] Attestation made obsolete when the covered code changes —
+  `docs/intentions/attestation-invalidated-by-code-change.md`.
+- [ ] [decision] Merge gate on the required checks —
+  `docs/intentions/merge-gate-required-checks.md`.
+- [ ] [decision] Contract registry and brief deletion frictions in the lifecycle —
+  `docs/intentions/scoping-closing-frictions.md`.
+
 - [ ] [decision] Declare the stack in the kit configuration —
   `docs/intentions/declare-the-stack.md`.
 
