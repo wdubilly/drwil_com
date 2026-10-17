@@ -1,6 +1,7 @@
 # Report: acceptance criteria as durable controls (drwil 0.6.1)
 
-As of 2026-10-17. Experiment scoped by `docs/projects/acceptance-criteria-demo.md`;
+As of 2026-10-17. Experiment scoped by the brief « demonstrate acceptance criteria as durable
+controls », condensed in `docs/projects/journal.md`;
 replayed by `tests/acceptance-demo.test.mjs` (check `QUA-041`, contract QUA-041 —
 a deliberate regression and a missing proof are detected). This report is the
 object of QUA-042 (judged by the requester).

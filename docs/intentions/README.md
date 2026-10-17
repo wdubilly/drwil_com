@@ -22,7 +22,12 @@ removes it when fully covered.
 |---|---|
 | `docs/intentions/order-line-quantity-zero.md` | Order line with a quantity of 0: rejected or worth 0 € |
 | `docs/intentions/declare-the-stack.md` | Declare the stack in `.drwil/ia-first.json` |
-| `docs/intentions/acceptance-criteria-durable-memory.md` | Acceptance criteria turned into durable, traceable controls |
+| `docs/intentions/criteria-reevaluated-in-ci.md` | Acceptance criteria re-evaluated in CI and after closing |
+| `docs/intentions/per-criterion-human-acceptance.md` | Human acceptance recorded per acceptance criterion |
+| `docs/intentions/versioned-run-results.md` | Execution results kept in the repository |
+| `docs/intentions/attestation-invalidated-by-code-change.md` | Attestation made obsolete when the covered code changes |
+| `docs/intentions/merge-gate-required-checks.md` | Merge gate on the required checks |
+| `docs/intentions/scoping-closing-frictions.md` | Contract registry and brief deletion frictions in the lifecycle |
 
 ## Brief template
 
