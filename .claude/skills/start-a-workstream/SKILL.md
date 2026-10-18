@@ -27,6 +27,9 @@ Starting is the human's decision: it is **their answer to the poll**, read by a 
      queue): the briefs ticked are run in the poll's order, the first now, the next ones
      started by the agent after each closing; only ready briefs (maturity « ready », no open
      decision, acceptance criteria) can be queued, otherwise the whole start is refused.
+   - **A single scoped brief**: a question needs at least two options, so add a second one,
+     label `Not now` (description: start nothing), never recommended; the hook reads it,
+     starts nothing and says so.
    - Claude Code, **second question** of the same poll: `header` exactly `drwil-merge`,
      options "Automatic merge" (the agent will schedule the merge in CLOSING) and "Manual
      merge", with no recommendation: it is the acceptance decision, taken at start.
@@ -37,20 +40,45 @@ Starting is the human's decision: it is **their answer to the poll**, read by a 
    - **Forbidden**: filling `answers` or a default value (`default`): the hook refuses the poll.
      The human chooses alone.
 4. After the answer, read the state again: `node .githooks/state.mjs`. In BUILD on the
-   chosen brief: implement. Otherwise: report the refusal as is, without retrying another way. If the state
+   chosen brief: implement. Otherwise: report the refusal as is, without retrying another way;
+   the hook always says why (`[drwil]` message: refusal, « Not now », no answer read, error).
+   No `[drwil]` message at all: the hooks are not active in this session (e.g. opened before
+   `init`) — say so and suggest restarting the session. If the state
    says "Automatic merge authorised": in CLOSING, after verify PASS and pushing the closing
    commit, in this order — wait until GitHub has computed the PR and, if it is behind the main
    branch (BEHIND), update it; schedule `gh pr merge --auto --merge`; check that the merge is
    scheduled (`gh pr view --json autoMergeRequest`); only then go back to Scoping, which clears
-   the authorisation. On failure, stay in CLOSING and report it. Otherwise the merge stays a
-   human gesture.
-5. **Queue** (the state says « Queue decided at start »): after each closing, wait until the
-   PR is merged, update the main branch, then start the next brief with
-   `node .githooks/state.mjs next` and implement it — no new poll. Stop at the first
-   workstream that gets stuck (human attestation awaited, FAIL not fixed, red CI, decision to
-   make): say why and what is expected; the queue goes on once it is unblocked, or
-   `node .githooks/state.mjs queue stop` drops it. A short report at each closing (criteria,
-   checks, limits, intents created), a summary at the end of the queue.
+   the authorisation. On failure, stay in CLOSING and report it. If `gh pr merge --auto` fails
+   because the repository does not allow it (« Auto merge is not allowed for this repository »),
+   say « auto-merge not allowed by the repository » and the way out — a repository admin ticks
+   « Allow auto-merge » in the GitHub repository settings (General → Pull Requests), or the
+   human merges by hand — stay in CLOSING, and never say the merge is scheduled: a mergeable PR,
+   auto-merge allowed by the repository, auto-merge scheduled and merge done are four different
+   states. Otherwise the merge stays a human gesture.
+5. **Queue** (the state says « Queue decided at start »): with Claude Code, run each workstream in a
+   subagent (fresh context), the first one right after the poll: the context read again is most of
+   a queue's cost, and grows with each workstream kept in the same session.
+   - The subagent (Agent tool) works in the repository folder — never `isolation: "worktree"`:
+     `.drwil/state.json` (if present) is ignored by Git, absent from an isolated copy, and the subagent would
+     believe it is in SCOPING. It receives no state reminder at start: its instructions start by
+     reading the state: `node .githooks/state.mjs`, then carry the workstream until back in
+     SCOPING (closing and scheduled merge included), without running `next`, and end with the
+     report. It cannot ask the human: on anything that needs one, it stops and says why.
+   - One subagent at a time; the main session does not change the state while it works and reads
+     it again when it returns. The main session keeps only the reports.
+   - After the closing, the main session follows the PR with `gh` until it is merged, 30 minutes
+     at most (`gh pr view <pr> --json state`), updates the main branch, then starts the next brief
+     with `node .githooks/state.mjs next` and hands it to a new subagent — no new poll. No next
+     brief: the summary.
+   - Stop at the first workstream that gets stuck (human attestation awaited, FAIL not fixed, red
+     CI, merge not done within 30 minutes, decision to make): say why and what is expected; never
+     start the next one on a merge not done. The queue goes on once it is unblocked, or
+     `node .githooks/state.mjs queue stop` drops it. A short report at each closing (criteria,
+     checks, limits, intents created), a summary at the end of the queue.
+   - **Resuming a queue in a new session** (after `/clear` or a restart, the state in SCOPING with
+     a queue): first ask « the queue resumes with <brief>: shall I start it? » and run `next` only
+     on an explicit yes; anything else (« continue », silence, another request) starts nothing.
+   - Another tool (Copilot CLI…): the queue runs in the same session, the rest unchanged.
 
 Without a poll in the tool: give the human the command `node .githooks/state.mjs start`, to run
 in an interactive terminal.

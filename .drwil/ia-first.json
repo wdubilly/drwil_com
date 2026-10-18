@@ -22,7 +22,14 @@
     "contracts": "docs/contracts.md",
     "index": "docs/projects/pending.md"
   },
-  "stack": [],
+  "stack": [
+    {
+      "path": ".",
+      "technos": [
+        "Node.js"
+      ]
+    }
+  ],
   "checks": [
     {
       "id": "APP-001",

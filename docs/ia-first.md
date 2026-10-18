@@ -1,6 +1,6 @@
 # "IA first" architecture — description
 
-State as of 2026-10-17. This document explains **how this repo is built to be
+State as of 2026-10-18. This document explains **how this repo is built to be
 modified by agents**: where the rules live, who checks them, and what is
 not checked. It describes neither the product nor the detail of invariants
 (single source: `docs/contracts.md`); the product, if described, lives in
@@ -362,14 +362,19 @@ The block's grammar (`.githooks/scope.mjs`) is shared by the check and
 the reminder: a single source.
 
 **Readable identifiers.** An identifier cited to a human (contract ID,
-catalog line, lot or point of the active brief) is followed by what it
-designates. A single source, `.githooks/glossary.mjs`, reads the labels in
-the registry, the catalog and the active brief: the checks' outputs and
-`drwil verify` annotate the first mention of each ID; any agent gets the
-labels with `node .githooks/glossary.mjs "<text>"` (`AGENTS.md`, Copilot and
-Cursor instructions); with Claude Code, the `.claude/hooks/id-glossary.mjs`
-(if present) hook slips them into the agent's context after each tool that brings text
-in (shell, reads, searches) and cites them.
+catalog line, lot or point of the active brief, value-discovery opportunity
+`OPT-N`, marker an intention or a brief declares in its « Markers » section,
+one `` - `ID` — label `` line each) is followed by what it designates. A
+single source, `.githooks/glossary.mjs`, reads the labels: the checks'
+outputs and `drwil verify` annotate the first mention of each ID; any agent
+gets the labels with `node .githooks/glossary.mjs "<text>"` (`AGENTS.md`,
+Copilot and Cursor instructions). With Claude Code, two hooks: at the end of
+each reply, `.claude/hooks/reply-glossary.mjs` (if present) shows the human, under the
+reply, « ID — label » for each ID cited without a gloss right after it (a
+parenthesis, a dash, a colon, a table cell) — it completes the reply, never
+rewrites nor blocks it; after each tool that brings text in (shell, reads,
+searches), `.claude/hooks/id-glossary.mjs` (if present) slips the labels into the
+agent's context, once per identifier and per session.
 
 ### Governance state
 
@@ -504,7 +509,10 @@ never a pass: it is a warning at commit and a failure at push and in CI.
 - **Briefs always pass**: `docs/projects/` and `docs/intentions/`, as do
   human attestations, written by `drwil attest`:
   `.drwil/evidence/attestations/` (if present), and the consumption log
-  `.drwil/usage.jsonl` (if present), written at closing — configurable list: `outOfScope`. Any other file,
+  `.drwil/usage.jsonl` (if present), written at closing, and the scoping recipes' outputs,
+  written in SCOPING (value discovery and risk audit:
+  `docs/value-discovery.md` (if present), `docs/audit-risks.md` (if present), and their French
+  names) — configurable list: `outOfScope`. Any other file,
   code or doc, is subject to the scope.
 - **At commit**: outside briefs, a commit is accepted only in
   `BUILD`, for files covered by the active brief's `scope` block

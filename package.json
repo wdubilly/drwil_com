@@ -9,6 +9,6 @@
     "test": "node --test \"tests/*.test.mjs\""
   },
   "devDependencies": {
-    "drwil": "file:drwil-0.6.1.tgz"
+    "drwil": "https://github.com/wdubilly/drwil/releases/download/v0.6.4/drwil-0.6.4.tgz"
   }
 }
