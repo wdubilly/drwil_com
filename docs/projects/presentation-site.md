@@ -7,15 +7,20 @@
 
 <!-- scope
 files:
-  - website/src/*/*
-  - website/tests/*/*
+  - website/src/*
+  - website/tests/*
+  - website/e2e/*
+  - website/scripts/*
+  - website/public/*
   - website/index.html
   - website/package.json
+  - website/pnpm-lock.yaml
   - website/vite.config.ts
+  - website/vitest.config.ts
   - website/tsconfig.json
   - website/playwright.config.ts
-  - website/pnpm-lock.yaml
   - netlify.toml
+  - .github/workflows/ia-first.yml
   - .drwil/ia-first.json
 -->
 
