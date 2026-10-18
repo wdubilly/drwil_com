@@ -142,6 +142,56 @@ contracts » section).
 **Origin** : acceptance-criteria-demo — « The requester's acceptance is distinguished from the agent's proposal »
 **Manual** : the requester reads the report and attests it.
 
+## Presentation site (SITE)
+
+## SITE-001 — The demonstration never shows PASS over an unresolved obligation
+**Rule** : in the illustrative `drwil verify` model, a criterion without a durable proof is FAIL, a check that did not run is ERROR, a pending human judgment is MANUAL, an attestation never replaces a failed automated check, and only a scenario with every blocking obligation proven shows PASS or ATTESTED, with the matching exit code
+**Scope** : `website/src/demo/*`
+**Source of truth** : `website/src/demo/model.ts` (`evaluate`)
+**Proof** : the tests named `SITE-001: …`, run on their own by the `SITE-001` check (hook + CI, `drwil verify`)
+**Reason** : a demonstration that shows a green verdict over a missing proof would teach the opposite of what the product states
+**Origin** : presentation-site — « The demonstration never shows PASS while its scenario holds an unresolved blocking obligation, and each scenario updates criterion, contract, check, evidence and verdict together »
+**Check** : `SITE-001`
+**Tests** : `website/tests/demo.test.ts`, `website/e2e/site.spec.ts`
+
+## SITE-002 — Every claim on the site traces to the real drwil implementation
+**Rule** : each statement on the site about drwil is backed by its README, source or release, or is worded as a limitation; no planned feature is presented as released
+**Scope** : `website/src/i18n/*`
+**Source of truth** : the drwil repository (README, source, latest release)
+**Proof** : human attestation (`drwil attest SITE-002`)
+**Reason** : a presentation site that overstates a governance tool undermines the trust it asks for
+**Origin** : presentation-site — « Every claim on the site traces to the real drwil implementation or is worded as a limitation »
+**Manual** : the requester reads the site copy against the drwil README and attests it.
+
+## SITE-003 — The content stays readable without WebGL and with reduced motion
+**Rule** : with WebGL unavailable and `prefers-reduced-motion` set, the static diagram replaces the 3D scene, every section is visible, the chain reveal leaves no hidden content, and there is no horizontal overflow
+**Scope** : `website/src/*`
+**Source of truth** : `website/e2e/site.spec.ts`
+**Proof** : the tests named `SITE-003: …`, run on their own by the `SITE-003` check (hook + CI, `drwil verify`)
+**Reason** : the 3D scene is decoration of an explanation: when it cannot run, the explanation must remain
+**Origin** : presentation-site — « The content stays readable and complete without WebGL and with reduced motion »
+**Check** : `SITE-003`
+**Tests** : `website/e2e/site.spec.ts`
+
+## SITE-004 — The site builds and English and French expose the same pages
+**Rule** : the site typechecks and builds, both dictionaries have the same structure with no empty text, the verdict vocabulary and workflow stage names are identical in both languages, and `/en` and `/fr` routes resolve
+**Scope** : `website/src/i18n/*`
+**Source of truth** : `website/src/i18n/index.ts`
+**Proof** : the tests named `SITE-004: …`, run after a build by the `SITE-004` check (hook + CI, `drwil verify`)
+**Reason** : a translation that drifts from the original misleads one audience about the product
+**Origin** : presentation-site — « The site builds, and English and French expose the same pages and links »
+**Check** : `SITE-004`
+**Tests** : `website/tests/content.test.ts`
+
+## SITE-005 — Every link points to a real destination
+**Rule** : every in-page anchor has a matching section and every external URL declared in `website/src/links.ts` answers successfully
+**Scope** : `website/src/links.ts`
+**Source of truth** : `website/scripts/check-links.mjs`
+**Proof** : `website/scripts/check-links.mjs` (hook + CI, `drwil verify`), which needs network access
+**Reason** : a dead link on a conversion page costs more than it saves
+**Origin** : presentation-site — « Every link points to a real destination »
+**Check** : `SITE-005`
+
 ## Business (APP)
 
 ## APP-001 — Order total with a 10 % discount from 100 €

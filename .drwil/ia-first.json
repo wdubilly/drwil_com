@@ -5,7 +5,8 @@
   "layers": [],
   "contractPrefixes": [
     "SEC",
-    "QUA"
+    "QUA",
+    "SITE"
   ],
   "tools": [
     "claude",
@@ -54,6 +55,67 @@
         ".drwil/ia-first.json",
         ".githooks/**"
       ]
+    },
+    {
+      "id": "SITE-001",
+      "name": "SITE-001 demonstration verdict tests",
+      "run": "pnpm --dir website exec vitest run -t \"SITE-001\"",
+      "paths": [
+        "website/src/**",
+        "website/tests/**",
+        "website/e2e/**",
+        "website/scripts/**",
+        "website/package.json",
+        "docs/contracts.md",
+        ".drwil/ia-first.json"
+      ]
+    },
+    {
+      "id": "SITE-003",
+      "name": "SITE-003 fallback and reduced-motion tests",
+      "run": "pnpm --dir website exec playwright test -g \"SITE-003\"",
+      "paths": [
+        "website/src/**",
+        "website/tests/**",
+        "website/e2e/**",
+        "website/scripts/**",
+        "website/package.json",
+        "docs/contracts.md",
+        ".drwil/ia-first.json",
+        "website/*.html",
+        "website/*.ts",
+        "website/public/**"
+      ]
+    },
+    {
+      "id": "SITE-004",
+      "name": "SITE-004 build and language parity",
+      "run": "pnpm --dir website build && pnpm --dir website exec vitest run -t \"SITE-004\"",
+      "paths": [
+        "website/src/**",
+        "website/tests/**",
+        "website/e2e/**",
+        "website/scripts/**",
+        "website/package.json",
+        "docs/contracts.md",
+        ".drwil/ia-first.json",
+        "website/*.html",
+        "website/*.ts"
+      ]
+    },
+    {
+      "id": "SITE-005",
+      "name": "SITE-005 link check",
+      "run": "pnpm --dir website check:links",
+      "paths": [
+        "website/src/**",
+        "website/tests/**",
+        "website/e2e/**",
+        "website/scripts/**",
+        "website/package.json",
+        "docs/contracts.md",
+        ".drwil/ia-first.json"
+      ]
     }
   ],
   "scopeReminder": "blocking",
@@ -69,7 +131,8 @@
   "codePrefixes": [
     "scripts",
     ".githooks",
-    "e2e"
+    "e2e",
+    "website"
   ],
   "extraCodeFiles": [],
   "extraCodeGlobs": [

@@ -20,6 +20,10 @@ jobs:
           ~/.local/bin/gitleaks version
       # The QUA-041 check runs `drwil verify`, installed as a dev dependency.
       - run: npm ci
+      # The SITE-* checks of the presentation site (website/) use pnpm and Playwright.
+      - run: npm install -g pnpm@11
+      - run: pnpm --dir website install --frozen-lockfile
+      - run: pnpm --dir website exec playwright install --with-deps chromium
       - run: node .githooks/run-checks.mjs
   # No branch protection is possible on a private repository on the free plan
   # (GitHub.com's "Merge" button stays unconditional): only an after-the-fact

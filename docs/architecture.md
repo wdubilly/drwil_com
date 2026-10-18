@@ -17,6 +17,8 @@ No separate layer: the code lives at the repository root.
 - `src/`: business code (`src/order-total.mjs`: order total and discount).
 - `tests/`: tests named after the contract they prove — `tests/order-total.test.mjs` (`APP-001: …`) tests `src/`; `tests/acceptance-demo.test.mjs` (`QUA-041: …`) replays, in throwaway copies of the working tree, the scenarios showing that a regression or a missing proof is detected.
 
+- `website/`: presentation site of drwil (Vite, React, TypeScript, React Three Fiber; pnpm), bilingual `/en` and `/fr`, deployed on Netlify through `netlify.toml`. `website/src/demo/` holds the illustrative `drwil verify` model, `website/src/i18n/` the two dictionaries, `website/src/three/` the lazy 3D hero scene, `website/src/components/` the sections, `website/public/` the static assets (favicon). Checks: `website/tests/` (Vitest), `website/e2e/` (Playwright), `website/scripts/` (link check).
+
 ## AI-first governance
 
 - AI instructions: `AGENTS.md`, then the `AGENTS.md` of the layer you touch.

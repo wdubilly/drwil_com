@@ -1,6 +1,6 @@
 # Project: drwil presentation website
 
-**Status**: scoped on 2026-10-18 — not started, waiting for the branch.
+**Status**: in progress on 2026-10-18 — site built in `website/`, checks `SITE-001`, `SITE-003`, `SITE-004`, `SITE-005` green locally; `SITE-002` awaits the requester's attestation.
 **Risk**: HIGH
 **Maturity**: ready
 **Intent**: `docs/intentions/drwil-presentation-site.md`
@@ -108,9 +108,11 @@ shipped. Overview source map: `docs/drwil-overview.mmd`.
 
 ## 7. Hand-off
 
-- **Last state** (2026-10-18): brief written, intent decided on the stack;
-  no website code yet.
-- **Uncommitted work**: this brief, its index line, the intent and
-  `docs/drwil-overview.mmd`.
-- **Next step**: [human] merge the kit update, create `website/presentation`,
-  then start the workstream (`/drwil-start`).
+- **Last state** (2026-10-18): the site is implemented in `website/` (hero with
+  lazy 3D scene and static fallback, chain, demonstration, workflow,
+  non-regression, verdicts, boundaries, install, EN/FR); contracts `SITE-001`
+  to `SITE-005`, their checks, CI steps and the architecture map are in place.
+- **Uncommitted work**: everything of the workstream until the first commit.
+- **Next step**: [human] read the copy against the drwil README and run
+  `drwil attest SITE-002`; then merge the pull request and connect the
+  repository to Netlify (site name, domain and previews are still open).

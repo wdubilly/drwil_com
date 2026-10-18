@@ -40,3 +40,8 @@ htmlcov/
 .drwil/reminder.json
 .drwil/glossary.json
 # <<< drwil
+
+# presentation site build and test output
+website/dist/
+website/test-results/
+website/playwright-report/
