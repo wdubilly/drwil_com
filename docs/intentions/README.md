@@ -28,6 +28,7 @@ removes it when fully covered.
 | `docs/intentions/attestation-invalidated-by-code-change.md` | Attestation made obsolete when the covered code changes |
 | `docs/intentions/merge-gate-required-checks.md` | Merge gate on the required checks |
 | `docs/intentions/scoping-closing-frictions.md` | Contract registry and brief deletion frictions in the lifecycle |
+| `docs/intentions/drwil-presentation-site.md` | Bilingual drwil presentation site on Netlify |
 
 ## Brief template
 
