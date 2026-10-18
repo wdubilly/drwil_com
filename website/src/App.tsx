@@ -4,6 +4,9 @@ import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { Chain } from "./components/Chain";
 import { Demo } from "./components/Demo";
+import { Map } from "./components/Map";
+import { Adopt } from "./components/Adopt";
+import { Commands } from "./components/Commands";
 import { Workflow } from "./components/Workflow";
 import { Regression } from "./components/Regression";
 import { Verdicts } from "./components/Verdicts";
@@ -44,7 +47,10 @@ export function App() {
         <Hero t={t} />
         <Chain t={t} />
         <Demo t={t} />
+        <Map t={t} />
         <Workflow t={t} />
+        <Adopt t={t} />
+        <Commands t={t} />
         <Regression t={t} />
         <Verdicts t={t} />
         <Boundaries t={t} />

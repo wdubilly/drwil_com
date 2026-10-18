@@ -2,7 +2,7 @@ import type { Dict, Lang } from "../i18n";
 import { LANGS } from "../i18n";
 import { LINKS } from "../links";
 
-const ANCHORS = ["chain", "demo", "workflow", "regression", "verdicts", "boundaries", "install"] as const;
+const ANCHORS = ["chain", "demo", "map", "workflow", "adopt", "commands", "regression", "verdicts", "boundaries", "install"] as const;
 
 export function Nav({ t, lang, onLang }: { t: Dict; lang: Lang; onLang: (l: Lang) => void }) {
   return (

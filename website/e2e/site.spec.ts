@@ -11,7 +11,7 @@ test.describe("SITE-003: content readable without WebGL and with reduced motion"
     await expect(page.getByRole("heading", { level: 1 })).toContainText("The agent produces the work.");
     await expect(page.getByRole("img", { name: /verification core/i })).toBeVisible();
     await expect(page.getByTestId("hero-3d")).toHaveCount(0);
-    for (const id of ["chain", "demo", "workflow", "regression", "verdicts", "boundaries", "install"]) {
+    for (const id of ["chain", "demo", "map", "workflow", "adopt", "commands", "regression", "verdicts", "boundaries", "install"]) {
       await expect(page.locator(`#${id}`)).toBeVisible();
     }
     await expect(page.locator(".chain li").first()).toBeVisible();
