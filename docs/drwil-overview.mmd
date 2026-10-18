@@ -1,0 +1,113 @@
+flowchart TD
+
+human(("Human"))
+agent(("AI agent"))
+
+subgraph install["Installation (CLI: packages/drwil)"]
+  cli["drwil CLI<br/>bin/drwil.js"]
+  init["init / dry-run<br/>index.ts, install.ts, stack.ts"]
+  upkeep["doctor, resolve-drift, uninstall<br/>doctor.ts, drift.ts, manifest.ts"]
+end
+
+subgraph kit["Kit installed in the user project"]
+  agents["AGENTS.md + tool pointers<br/>Claude, Copilot, Cursor, Codex, Gemini"]
+  registry["docs/contracts.md<br/>11 shipped contracts + catalog"]
+  briefs["docs/projects + docs/intentions<br/>scope block, acceptance criteria, Resume"]
+  recipes["15 recipes + slash-command skills"]
+  state["Workstream state machine<br/>.githooks/state.mjs (root = parent of .githooks/)<br/>SCOPING > BUILD > EVIDENCE > VERIFY > CLOSING"]
+  glossary["Readable references<br/>.githooks/glossary.mjs<br/>ID labels: contracts, catalog, brief, OPT-N, Markers"]
+end
+
+subgraph guards["Guardrail layers"]
+  agenthooks["Agent hooks (Claude Code)<br/>state reminder, scope guard, deny --no-verify,<br/>id-glossary (tool in), reply-glossary (Stop)"]
+  precommit["pre-commit + prepare-commit-msg<br/>run-checks.mjs, Drwil-Brief trailer"]
+  prepush["pre-push<br/>full replay"]
+  ci["CI: GitHub Actions or GitLab<br/>replays each commit against its brief"]
+  engine["Checks engine<br/>engine.mjs, scope-gate.mjs, check-docs.mjs"]
+end
+
+subgraph proof["Verdict and proof (CLI)"]
+  verify["drwil verify<br/>verify.ts, criteria.ts"]
+  verdict["PASS / FAIL / ERROR / MANUAL / ATTESTED<br/>exit 0, 1, 2"]
+  evidence["Evidence, secrets redacted<br/>evidence.ts"]
+  attest["drwil attest, human only<br/>attest.ts"]
+  attfiles["Versioned attestations<br/>.drwil/evidence/attestations"]
+  agentout["verify --agent / --json<br/>agent.ts"]
+end
+
+subgraph closing["Closing"]
+  journal["Journal + intentions for untreated limits"]
+  usage["Token consumption<br/>.drwil/usage.jsonl<br/>+ average cache read per request"]
+  pr["Pull request<br/>merge by human, or authorised at start"]
+end
+
+subgraph optional["Optional modules"]
+  dashboard["dashboard"]
+  frontq["front-quality"]
+  release["create-release"]
+end
+
+queue["Workstream queue<br/>one subagent per brief (Claude Code),<br/>next only after PR merged (gh, 30 min max)"]
+
+init -.->|"installs"| agents
+init -.->|"installs"| registry
+init -.->|"installs"| recipes
+init -.->|"installs"| engine
+init -.->|"installs"| optional
+
+agents --> agent
+agent -->|"codes inside the brief scope"| precommit
+agenthooks -.->|"guards"| agent
+state -.->|"reminder"| agenthooks
+precommit --> engine
+precommit --> prepush
+prepush --> ci
+engine -->|"reads"| registry
+engine -->|"reads"| briefs
+
+registry --> glossary
+briefs --> glossary
+agent -->|"glossary.mjs text"| glossary
+glossary -.->|"annotates first mention"| verify
+glossary -.->|"labels in context"| agenthooks
+agenthooks -.->|"IDs glossed under the reply"| human
+
+agent -->|"runs"| verify
+ci --> verify
+registry --> verify
+briefs -->|"acceptance criteria"| verify
+verify --> evidence
+verify --> verdict
+verify --> agentout
+verdict -->|"MANUAL: agent stops"| human
+human -->|"types the contract ID"| attest
+attest --> attfiles
+attfiles --> verify
+evidence -->|"PASS or ATTESTED on HEAD required"| state
+state -->|"CLOSING"| journal
+journal --> usage
+usage --> pr
+pr -->|"merge"| human
+pr -->|"merged"| queue
+
+human -->|"decides"| registry
+human -->|"frames and approves"| briefs
+human -->|"starts the workstream, /drwil-start or state start"| state
+human -->|"ticks several briefs"| queue
+queue --> state
+cli --> init
+cli --> upkeep
+cli --> verify
+cli --> attest
+
+classDef toneBlue fill:#dbeafe,stroke:#2563eb,color:#172554
+classDef toneAmber fill:#fef3c7,stroke:#d97706,color:#78350f
+classDef toneMint fill:#dcfce7,stroke:#16a34a,color:#14532d
+classDef toneRose fill:#ffe4e6,stroke:#e11d48,color:#881337
+classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,color:#312e81
+class cli,init,upkeep toneAmber
+class agents,registry,briefs,recipes,state,glossary toneMint
+class agenthooks,precommit,prepush,ci,engine toneRose
+class verify,verdict,evidence,attest,attfiles,agentout toneBlue
+class journal,usage,pr,queue toneAmber
+class human,agent toneIndigo

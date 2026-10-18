@@ -48,6 +48,11 @@ otherwise.
 - [ ] [decision] Declare the stack in the kit configuration —
   `docs/intentions/declare-the-stack.md`.
 
+### Website
+
+- [ ] [human] drwil presentation website (Vite, React, 3D, bilingual) —
+  `docs/projects/presentation-site.md`.
+
 <!-- Example:
 - [ ] [AI] short title of the topic, link to a brief if more than two lines
   are needed, otherwise the topic fits here.
